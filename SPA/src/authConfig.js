@@ -1,9 +1,27 @@
-/*
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License.
- */
+import { LogLevel } from '@azure/msal-browser';
 
-import {LogLevel} from '@azure/msal-browser';
+// https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-react
+// The Application (client) ID of the application you registered. the ONLY mandatory field that need to be supplied.
+const appId = process.env.REACT_APP_APP_ID; // Application (client) ID
+
+// The Azure cloud instance in which your application is registered. Defaults to "https://login.microsoftonline.com"
+// For the main (or global) Azure cloud: https://login.microsoftonline.com
+const cloudInstanceId = process.env.REACT_APP_CLOUD_INSTANCE_ID; // Cloud_Instance_Id
+
+// If your application supports accounts in any organizational directory and personal Microsoft accounts: common. Defaults to "common"
+const tenantId = process.env.REACT_APP_TENANT_ID; // Tenant_Id
+
+const authority = `${cloudInstanceId}${tenantId ? "/" : ""}${tenantId}`;
+
+// You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
+const redirectUri = process.env.REACT_APP_REDIRECT_URI; // Redirect_Uri
+
+// APP ID URI of the web API project that you've registered e.g. api://xxxxxx/access_as_user
+const webApiScope = process.env.REACT_APP_WEB_API_SCOPE; // Web_Api_Scope
+
+// The instance of the Microsoft Graph API the application should communicate with.
+// For the global Microsoft Graph API endpoint: https://graph.microsoft.com. 
+const graphMeEndpoint = process.env.REACT_APP_GRAPH_ME_ENDPOINT; // Graph_Endpoint_1.0
 
 /**
  * Configuration object to be passed to MSAL instance on creation.
@@ -12,9 +30,9 @@ import {LogLevel} from '@azure/msal-browser';
  */
 export const msalConfig = {
   auth: {
-    clientId: 'Enter_the_Application_Id_Here', // This is the ONLY mandatory field that you need to supply.
-    authority: 'https://login.microsoftonline.com/Enter_the_Tenant_Info_Here', // Defaults to "https://login.microsoftonline.com/common"
-    redirectUri: '/', // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
+    clientId: appId,
+    authority: authority,
+    redirectUri: redirectUri,
     postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
     navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
   },
@@ -32,12 +50,15 @@ export const msalConfig = {
           case LogLevel.Error:
             console.error(message);
             return;
+
           case LogLevel.Info:
             console.info(message);
             return;
+
           case LogLevel.Verbose:
             console.debug(message);
             return;
+
           case LogLevel.Warning:
             console.warn(message);
             return;
@@ -55,7 +76,7 @@ export const protectedResources = {
   apiTodoList: {
     todoListEndpoint: 'http://localhost:5000/api/todolist',
     dashboardEndpoint: 'http://localhost:5000/api/dashboard',
-    scopes: ['Enter_the_Web_Api_Scope_here'],
+    scopes: [webApiScope],
   },
 };
 

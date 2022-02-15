@@ -2,13 +2,14 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const passport = require('passport');
+require('dotenv').config();
 const config = require('./authConfig');
 const router = require('./routes/router');
 const routeGuard = require('./utils/guard');
 const BearerStrategy = require('passport-azure-ad').BearerStrategy;
 
-config.credentials.tenantID = process.env.TENANT_ID;
-config.credentials.clientID = process.env.APP_ID;
+config.credentials.clientID = process.env.API_APP_ID;
+config.credentials.tenantID = process.env.API_TENANT_ID;
 
 const options = {
   identityMetadata: `https://${config.metadata.authority}/${config.credentials.tenantID}/${config.metadata.version}/${config.metadata.discovery}`,

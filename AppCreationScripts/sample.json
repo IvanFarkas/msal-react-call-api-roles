@@ -34,7 +34,7 @@
     },
     {
       "Id": "client",
-      "Name": "msal-react-spa",
+      "Name": "msal-react-spa-roles",
       "Kind": "SinglePageApplication",
       "Audience": "AzureADMyOrg",
       "HomePage": "http://localhost:3000/",

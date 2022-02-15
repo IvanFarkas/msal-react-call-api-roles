@@ -302,12 +302,12 @@ Function ConfigureApplications
 
 
    # Create the client AAD application
-   Write-Host "Creating the AAD application (msal-react-spa)"
+   Write-Host "Creating the AAD application (msal-react-spa-roles)"
    # create the application 
-   $clientAadApplication = New-AzureADApplication -DisplayName "msal-react-spa" `
+   $clientAadApplication = New-AzureADApplication -DisplayName "msal-react-spa-roles" `
                                                   -HomePage "http://localhost:3000/" `
                                                   -ReplyUrls "http://localhost:3000/" `
-                                                  -IdentifierUris "https://$tenantName/msal-react-spa" `
+                                                  -IdentifierUris "https://$tenantName/msal-react-spa-roles" `
                                                   -PublicClient $False
 
    # create the service principal of the newly created application 
@@ -330,12 +330,12 @@ Function ConfigureApplications
    $appRoles.Add($newRole)
    Set-AzureADApplication -ObjectId $clientAadApplication.ObjectId -AppRoles $appRoles
 
-   Write-Host "Done creating the client application (msal-react-spa)"
+   Write-Host "Done creating the client application (msal-react-spa-roles)"
 
    # URL of the AAD application in the Azure portal
    # Future? $clientPortalUrl = "https://portal.azure.com/#@"+$tenantName+"/blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/Overview/appId/"+$clientAadApplication.AppId+"/objectId/"+$clientAadApplication.ObjectId+"/isMSAApp/"
    $clientPortalUrl = "https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/CallAnAPI/appId/"+$clientAadApplication.AppId+"/objectId/"+$clientAadApplication.ObjectId+"/isMSAApp/"
-   Add-Content -Value "<tr><td>client</td><td>$currentAppId</td><td><a href='$clientPortalUrl'>msal-react-spa</a></td></tr>" -Path createdApps.html
+   Add-Content -Value "<tr><td>client</td><td>$currentAppId</td><td><a href='$clientPortalUrl'>msal-react-spa-roles</a></td></tr>" -Path createdApps.html
 
    $requiredResourcesAccess = New-Object System.Collections.Generic.List[Microsoft.Open.AzureAD.Model.RequiredResourceAccess]
 

@@ -117,12 +117,12 @@ As a first step you'll need to:
 1. Sign in to the [Azure portal](https://portal.azure.com).
 1. If your account is present in more than one Azure AD tenant, select your profile at the top right corner in the menu on top of the page, and then **switch directory** to change your portal session to the desired Azure AD tenant.
 
-### Register the service app (msal-node-api)
+### Register the service app (msal-node-api-roles)
 
 1. Navigate to the [Azure portal](https://portal.azure.com) and select the **Azure AD** service.
 1. Select the **App Registrations** blade on the left, then select **New registration**.
 1. In the **Register an application page** that appears, enter your application's registration information:
-   - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `msal-node-api`.
+   - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `msal-node-api-roles`.
    - Under **Supported account types**, select **Accounts in this organizational directory only**.
 1. Select **Register** to create the application.
 1. In the app's registration screen, find and note the **Application (client) ID**. You use this value in your app's configuration file(s) later in your code.
@@ -135,10 +135,10 @@ The first thing that we need to do is to declare the unique [resource](https://d
    - Select **Add a scope** button open the **Add a scope** screen and Enter the values as indicated below:
         - For **Scope name**, use `access_as_user`.
         - Select **Admins and users** options for **Who can consent?**.
-        - For **Admin consent display name** type `Access msal-node-api`.
-        - For **Admin consent description** type `Allows the app to access msal-node-api as the signed-in user.`
-        - For **User consent display name** type `Access msal-node-api`.
-        - For **User consent description** type `Allow the application to access msal-node-api on your behalf.`
+        - For **Admin consent display name** type `Access msal-node-api-roles`.
+        - For **Admin consent description** type `Allows the app to access msal-node-api-roles as the signed-in user.`
+        - For **User consent display name** type `Access msal-node-api-roles`.
+        - For **User consent description** type `Allow the application to access msal-node-api-roles on your behalf.`
         - Keep **State** as **Enabled**.
         - Select the **Add scope** button on the bottom to save this scope.
 1. On the right side menu, select the `Manifest` blade.
@@ -176,10 +176,10 @@ To add users to this app role, follow the guidelines here: [Assign users and gro
 TENANT_ID="[AAD Tenant Id]"
 
 # The Application (client) ID of the application you registered.
-APP_ID="[App Id from above]"
+API_APP_ID="[App Id from above]"
 ```
 
-#### Configure the service app (msal-node-api) to use your app registration
+#### Configure the service app (msal-node-api-roles) to use your app registration
 
 Open the project in your IDE (like Visual Studio or Visual Studio Code) to configure the code.
 
@@ -187,14 +187,14 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 
 1. Open the `API/.env` file.
 1. Set `TENANT_ID` value with your Azure AD tenant ID.
-1. Set `APP_ID` value with the application ID (clientId) of `msal-react-api` app copied from the Azure portal.
+1. Set `API_APP_ID` value with the application ID (clientId) of `msal-react-api-roles` app copied from the Azure portal.
 
-### Register the client app (msal-react-spa)
+### Register the client app (msal-react-spa-roles)
 
 1. Navigate to the [Azure portal](https://portal.azure.com) and select the **Azure AD** service.
 1. Select the **App Registrations** blade on the left, then select **New registration**.
 1. In the **Register an application page** that appears, enter your application's registration information:
-   - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `msal-react-spa`.
+   - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `msal-react-spa-roles`.
    - Under **Supported account types**, select **Accounts in this organizational directory only**.
    - In the **Redirect URI (optional)** section, select **Single-page application** in the combo-box and enter the following redirect URI: `http://localhost:3000/`.
 1. Select **Register** to create the application.
@@ -203,8 +203,8 @@ Open the project in your IDE (like Visual Studio or Visual Studio Code) to confi
 1. In the app's registration screen, select the **API permissions** blade in the left to open the page where we add access to the APIs that your application needs.
    - Select the **Add a permission** button and then,
    - Ensure that the **My APIs** tab is selected.
-   - In the list of APIs, select the API `msal-node-api`.
-   - In the **Delegated permissions** section, select the **Access 'msal-node-api'** in the list. Use the search box if necessary.
+   - In the list of APIs, select the API `msal-node-api-roles`.
+   - In the **Delegated permissions** section, select the **Access 'msal-node-api-roles'** in the list. Use the search box if necessary.
    - Select the **Add permissions** button at the bottom.
 
 #### Define Application Roles
@@ -247,14 +247,14 @@ REACT_APP_WEB_API_SCOPE="api://[APP ID URI of the web API project]/access_as_use
 REACT_APP_GRAPH_ME_ENDPOINT="https://graph.microsoft.com/v1.0/me"
 ```
 
-#### Configure the client app (msal-react-spa) to use your app registration
+#### Configure the client app (msal-react-spa-roles) to use your app registration
 
 Open the project in your IDE (like Visual Studio or Visual Studio Code) to configure the code.
 
 > In the steps below, "ClientID" is the same as "Application ID" or "AppId".
 
 1. Open the `SPA\.env` file.
-1. Set `REACT_APP_APP_ID` value with the application ID (clientId) of `msal-react-spa` app copied from the Azure portal.
+1. Set `REACT_APP_APP_ID` value with the application ID (clientId) of `msal-react-spa-roles` app copied from the Azure portal.
 1. Set `REACT_APP_TENANT_ID` value with your Azure AD tenant ID.
 1. Set `REACT_APP_WEB_API_SCOPE` value with APP ID URI of the web API project that you've registered earlier, e.g. `api://[APP ID URI of the web API project]/access_as_user`
 
