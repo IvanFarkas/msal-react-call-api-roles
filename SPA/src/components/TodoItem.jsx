@@ -10,30 +10,23 @@ const usePrevious = (value) => {
   useEffect(() => {
     ref.current = value;
   });
-
   return ref.current;
 };
 
 export const TodoItem = (props) => {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState('');
-
   const editFieldRef = useRef(null);
   const editButtonRef = useRef(null);
-
   const wasEditing = usePrevious(isEditing);
-
   const handleChange = (e) => {
     setNewName(e.target.value);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!newName.trim()) {
       return;
     }
-
     props.editTask(props.id, newName);
     setNewName('');
     setEditing(false);
@@ -83,11 +76,9 @@ export const TodoItem = (props) => {
     if (!wasEditing && isEditing) {
       editFieldRef.current.focus();
     }
-
     if (wasEditing && !isEditing) {
       editButtonRef.current.focus();
     }
   }, [wasEditing, isEditing]);
-
   return <ListGroupItem className="todo-item">{isEditing ? editingTemplate : viewTemplate}</ListGroupItem>;
 };

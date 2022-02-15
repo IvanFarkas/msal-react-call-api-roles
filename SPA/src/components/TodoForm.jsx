@@ -5,14 +5,11 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 export const TodoForm = (props) => {
   const [name, setName] = useState('');
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (!name.trim()) {
       return;
     }
-
     props.addTask(name);
     setName('');
   };

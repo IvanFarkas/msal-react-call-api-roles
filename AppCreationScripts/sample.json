@@ -87,15 +87,15 @@
       "SettingFile": "\\..\\SPA\\src\\authConfig.js",
       "Mappings": [
         {
-          "key": "Enter_the_Application_Id_Here",
+          "key": "Application_Id",
           "value": "client.AppId"
         },
         {
-          "key": "Enter_the_Tenant_Info_Here",
+          "key": "Tenant_Id",
           "value": "$tenantId"
         },
         {
-          "key": "Enter_the_Web_Api_Scope_here",
+          "key": "Web_Api_Scope_here",
           "value": "service.Scope"
         }
       ]

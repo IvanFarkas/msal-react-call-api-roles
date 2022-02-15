@@ -1,5 +1,5 @@
-import {protectedResources} from './authConfig';
-import {msalInstance} from './index';
+import { protectedResources } from './authConfig';
+import { msalInstance } from './index';
 
 const getToken = async () => {
   const account = msalInstance.getActiveAccount();
@@ -18,7 +18,6 @@ const getToken = async () => {
 
 export const getTasks = async () => {
   const accessToken = await getToken();
-
   const headers = new Headers();
   const bearer = `Bearer ${accessToken}`;
 
@@ -30,13 +29,15 @@ export const getTasks = async () => {
   };
 
   return fetch(protectedResources.apiTodoList.todoListEndpoint, options)
-    .then((response) => response.json())
+    .then((response) => {
+      const data = response.json();
+      return data;
+    })
     .catch((error) => console.log(error));
 };
 
 export const getTask = async (id) => {
   const accessToken = await getToken();
-
   const headers = new Headers();
   const bearer = `Bearer ${accessToken}`;
 
@@ -48,13 +49,15 @@ export const getTask = async (id) => {
   };
 
   return fetch(protectedResources.apiTodoList.todoListEndpoint + `/${id}`, options)
-    .then((response) => response.json())
+    .then((response) => {
+      const data = response.json();
+      return data;
+    })
     .catch((error) => console.log(error));
 };
 
 export const postTask = async (task) => {
   const accessToken = await getToken();
-
   const headers = new Headers();
   const bearer = `Bearer ${accessToken}`;
 
@@ -68,13 +71,15 @@ export const postTask = async (task) => {
   };
 
   return fetch(protectedResources.apiTodoList.todoListEndpoint, options)
-    .then((response) => response.json())
+    .then((response) => {
+      const data = response.json();
+      return data;
+    })
     .catch((error) => console.log(error));
 };
 
 export const deleteTask = async (id) => {
   const accessToken = await getToken();
-
   const headers = new Headers();
   const bearer = `Bearer ${accessToken}`;
 
@@ -86,13 +91,15 @@ export const deleteTask = async (id) => {
   };
 
   return fetch(protectedResources.apiTodoList.todoListEndpoint + `/${id}`, options)
-    .then((response) => response.json())
+    .then((response) => {
+      const data = response.json();
+      return data;
+    })
     .catch((error) => console.log(error));
 };
 
 export const editTask = async (id, task) => {
   const accessToken = await getToken();
-
   const headers = new Headers();
   const bearer = `Bearer ${accessToken}`;
 
@@ -106,13 +113,15 @@ export const editTask = async (id, task) => {
   };
 
   return fetch(protectedResources.apiTodoList.todoListEndpoint + `/${id}`, options)
-    .then((response) => response.json())
+    .then((response) => {
+      const data = response.json();
+      return data;
+    })
     .catch((error) => console.log(error));
 };
 
 export const getAllTasks = async () => {
   const accessToken = await getToken();
-
   const headers = new Headers();
   const bearer = `Bearer ${accessToken}`;
 
@@ -124,6 +133,9 @@ export const getAllTasks = async () => {
   };
 
   return fetch(protectedResources.apiTodoList.dashboardEndpoint, options)
-    .then((response) => response.json())
+    .then((response) => {
+      const data = response.json();
+      return data;
+    })
     .catch((error) => console.log(error));
 };

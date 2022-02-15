@@ -5,7 +5,6 @@ import {useMsal} from '@azure/msal-react';
 export const RouteGuard = ({Component, ...props}) => {
   const {instance} = useMsal();
   const [isAuthorized, setIsAuthorized] = useState(false);
-
   const onLoad = async () => {
     const currentAccount = instance.getActiveAccount();
 

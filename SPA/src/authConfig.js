@@ -1,4 +1,4 @@
-import { LogLevel } from '@azure/msal-browser';
+import {LogLevel} from '@azure/msal-browser';
 
 // https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-react
 // The Application (client) ID of the application you registered. the ONLY mandatory field that need to be supplied.
@@ -11,7 +11,7 @@ const cloudInstanceId = process.env.REACT_APP_CLOUD_INSTANCE_ID; // Cloud_Instan
 // If your application supports accounts in any organizational directory and personal Microsoft accounts: common. Defaults to "common"
 const tenantId = process.env.REACT_APP_TENANT_ID; // Tenant_Id
 
-const authority = `${cloudInstanceId}${tenantId ? "/" : ""}${tenantId}`;
+const authority = `${cloudInstanceId}${tenantId ? '/' : ''}${tenantId}`;
 
 // You must register this URI on Azure Portal/App Registration. Defaults to window.location.origin
 const redirectUri = process.env.REACT_APP_REDIRECT_URI; // Redirect_Uri
@@ -20,7 +20,7 @@ const redirectUri = process.env.REACT_APP_REDIRECT_URI; // Redirect_Uri
 const webApiScope = process.env.REACT_APP_WEB_API_SCOPE; // Web_Api_Scope
 
 // The instance of the Microsoft Graph API the application should communicate with.
-// For the global Microsoft Graph API endpoint: https://graph.microsoft.com. 
+// For the global Microsoft Graph API endpoint: https://graph.microsoft.com.
 const graphMeEndpoint = process.env.REACT_APP_GRAPH_ME_ENDPOINT; // Graph_Endpoint_1.0
 
 /**

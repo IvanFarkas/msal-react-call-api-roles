@@ -1,15 +1,12 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {useMsal} from '@azure/msal-react';
 import {v4 as uuidv4} from 'uuid';
-
 import ListGroup from 'react-bootstrap/ListGroup';
-
 import {TodoForm} from './TodoForm';
 import {TodoItem} from './TodoItem';
-
 import {deleteTask, postTask, editTask} from '../fetch';
 
-function usePrevious(value) {
+const usePrevious = (value) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -17,7 +14,7 @@ function usePrevious(value) {
   });
 
   return ref.current;
-}
+};
 
 export const ListView = (props) => {
   const {instance} = useMsal();
@@ -68,10 +65,9 @@ export const ListView = (props) => {
 
     editTask(id, updatedTask).then(() => {
       const updatedTasks = tasks.map((task) => {
-        // if this task has the same ID as the edited task
+        // If this task has the same ID as the edited task
         if (id === task.id) {
-          // use object spread to make a new object
-          // whose `completed` prop has been inverted
+          // Use object spread to make a new object whose `completed` prop has been inverted
           return {...task, name: newName};
         }
         return task;
@@ -81,7 +77,6 @@ export const ListView = (props) => {
   };
 
   const taskList = tasks.map((task) => <TodoItem id={task.id} name={task.name} completed={task.completed} key={task.id} completeTask={handleCompleteTask} deleteTask={handleDeleteTask} editTask={handleEditTask} />);
-
   const listHeadingRef = useRef(null);
   const prevTaskLength = usePrevious(tasks.length);
 

@@ -1,7 +1,5 @@
 import {AuthenticatedTemplate, UnauthenticatedTemplate, useMsal} from '@azure/msal-react';
-
 import {Nav, Navbar, Button, Dropdown, DropdownButton} from 'react-bootstrap';
-
 import {loginRequest} from '../authConfig';
 
 export const NavigationBar = () => {
@@ -9,8 +7,8 @@ export const NavigationBar = () => {
 
   /**
    * Most applications will need to conditionally render certain components based on whether a user is signed in or not.
-   * msal-react provides 2 easy ways to do this. AuthenticatedTemplate and UnauthenticatedTemplate components will
-   * only render their children if a user is authenticated or unauthenticated, respectively.
+   * msal-react provides 2 easy ways to do this.
+   * AuthenticatedTemplate and UnauthenticatedTemplate components will only render their children if a user is authenticated or unauthenticated, respectively.
    */
   return (
     <>
