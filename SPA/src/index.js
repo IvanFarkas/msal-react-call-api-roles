@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {PublicClientApplication, EventType} from '@azure/msal-browser';
-import {msalConfig} from './authConfig';
+import { PublicClientApplication, EventType } from '@azure/msal-browser';
+import { msalConfig } from './authConfig';
 
 import App from './App.jsx';
 

@@ -5,16 +5,14 @@ const router = express.Router();
 const todolist = require('../controllers/todolist');
 const dashboard = require('../controllers/dashboard');
 
-router.get('/dashboard', dashboard.getAllTodos);
-
+// List
 router.get('/todolist', todolist.getTodos);
-
 router.get('/todolist/:id', todolist.getTodo);
-
 router.post('/todolist', todolist.postTodo);
-
 router.put('/todolist/:id', todolist.updateTodo);
-
 router.delete('/todolist/:id', todolist.deleteTodo);
+
+// Dashboard
+router.get('/dashboard', dashboard.getAllTodos);
 
 module.exports = router;

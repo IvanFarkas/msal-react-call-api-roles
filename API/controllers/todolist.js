@@ -6,8 +6,7 @@ const db = lowdb(adapter);
 exports.getTodo = (req, res) => {
   const id = req.params.id;
   const owner = req.authInfo['preferred_username'];
-
-  const todo = db.get('todos').filter({owner: owner}).find({id: id}).value();
+  const todo = db.get('todos').filter({ owner: owner }).find({ id: id }).value();
 
   if (todo) {
     res.status(200).send(todo);
@@ -18,31 +17,30 @@ exports.getTodo = (req, res) => {
 
 exports.getTodos = (req, res) => {
   const owner = req.authInfo['preferred_username'];
-
-  const todos = db.get('todos').filter({owner: owner}).value();
+  const todos = db.get('todos').filter({ owner: owner }).value();
 
   res.status(200).send(todos);
 };
 
 exports.postTodo = (req, res) => {
   db.get('todos').push(req.body).write();
-  res.status(200).json({message: 'success'});
+  res.status(200).json({ message: 'success' });
 };
 
 exports.updateTodo = (req, res) => {
   const id = req.params.id;
   const owner = req.authInfo['preferred_username'];
 
-  db.get('todos').find({owner: owner, id: id}).assign(req.body).write();
+  db.get('todos').find({ owner: owner, id: id }).assign(req.body).write();
 
-  res.status(200).json({message: 'success'});
+  res.status(200).json({ message: 'success' });
 };
 
 exports.deleteTodo = (req, res) => {
   const id = req.params.id;
   const owner = req.authInfo['preferred_username'];
 
-  db.get('todos').remove({owner: owner, id: id}).write();
+  db.get('todos').remove({ owner: owner, id: id }).write();
 
-  res.status(200).json({message: 'success'});
+  res.status(200).json({ message: 'success' });
 };

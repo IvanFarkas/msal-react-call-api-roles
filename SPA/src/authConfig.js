@@ -1,4 +1,4 @@
-import {LogLevel} from '@azure/msal-browser';
+import { LogLevel } from '@azure/msal-browser';
 
 // https://docs.microsoft.com/en-us/azure/active-directory/develop/tutorial-v2-react
 // The Application (client) ID of the application you registered. the ONLY mandatory field that need to be supplied.

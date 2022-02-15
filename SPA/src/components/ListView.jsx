@@ -1,10 +1,10 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {useMsal} from '@azure/msal-react';
-import {v4 as uuidv4} from 'uuid';
+import React, { useState, useRef, useEffect } from 'react';
+import { useMsal } from '@azure/msal-react';
+import { v4 as uuidv4 } from 'uuid';
 import ListGroup from 'react-bootstrap/ListGroup';
-import {TodoForm} from './TodoForm';
-import {TodoItem} from './TodoItem';
-import {deleteTask, postTask, editTask} from '../fetch';
+import { TodoForm } from './TodoForm';
+import { TodoItem } from './TodoItem';
+import { deleteTask, postTask, editTask } from '../fetch';
 
 const usePrevious = (value) => {
   const ref = useRef();
@@ -17,7 +17,7 @@ const usePrevious = (value) => {
 };
 
 export const ListView = (props) => {
-  const {instance} = useMsal();
+  const { instance } = useMsal();
   const account = instance.getActiveAccount();
   const [tasks, setTasks] = useState(props.todoListData);
 
@@ -31,7 +31,7 @@ export const ListView = (props) => {
         if (id === task.id) {
           // use object spread to make a new object
           // whose `completed` prop has been inverted
-          return {...task, completed: !task.completed};
+          return { ...task, completed: !task.completed };
         }
         return task;
       });
@@ -68,7 +68,7 @@ export const ListView = (props) => {
         // If this task has the same ID as the edited task
         if (id === task.id) {
           // Use object spread to make a new object whose `completed` prop has been inverted
-          return {...task, name: newName};
+          return { ...task, name: newName };
         }
         return task;
       });

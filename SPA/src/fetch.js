@@ -16,6 +16,7 @@ const getToken = async () => {
   return response.accessToken;
 };
 
+// List
 export const getTasks = async () => {
   const accessToken = await getToken();
   const headers = new Headers();
@@ -120,6 +121,7 @@ export const editTask = async (id, task) => {
     .catch((error) => console.log(error));
 };
 
+// Dashboard
 export const getAllTasks = async () => {
   const accessToken = await getToken();
   const headers = new Headers();

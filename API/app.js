@@ -20,24 +20,20 @@ const options = {
   passReqToCallback: config.settings.passReqToCallback,
   loggingLevel: config.settings.loggingLevel,
 };
-
 const bearerStrategy = new BearerStrategy(options, (token, done) => {
   // Send user info using the second argument
   done(null, {}, token);
 });
-
 const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
-
 app.use(passport.initialize());
-
 passport.use(bearerStrategy);
 
 // Validates token, checks for role and serve
-app.use('/api', passport.authenticate('oauth-bearer', {session: false}), routeGuard(config.accessMatrix), router);
+app.use('/api', passport.authenticate('oauth-bearer', { session: false }), routeGuard(config.accessMatrix), router);
 
 const port = process.env.PORT || 5000;
 

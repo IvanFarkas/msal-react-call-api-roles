@@ -1,5 +1,5 @@
-import {AuthenticatedTemplate} from '@azure/msal-react';
-import {NavigationBar} from './NavigationBar';
+import { AuthenticatedTemplate } from '@azure/msal-react';
+import { NavigationBar } from './NavigationBar';
 
 export const PageLayout = (props) => {
   /**

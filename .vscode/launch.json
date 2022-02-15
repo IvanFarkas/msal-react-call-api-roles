@@ -13,7 +13,7 @@
 			"name": "Debug API",
 			"type": "node",
 			"request": "launch",
-			"runtimeArgs": ["index.js", "--inspect-brk"],
+			"runtimeArgs": ["app.js", "--inspect-brk"],
 			"console": "integratedTerminal",
 			"internalConsoleOptions": "neverOpen",
 			"cwd": "${workspaceFolder}/API",
