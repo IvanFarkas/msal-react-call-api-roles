@@ -1,6 +1,4 @@
-API/data/
-**/db.json
-
+API/data/db.json
 # Logs
 logs
 *.log

@@ -16,7 +16,6 @@
   "bugs": {
     "url": "https://github.com/IvanFarkas/msal-react-call-api-roles/issues"
   },
-  "homepage": "https://github.com/IvanFarkas/msal-react#readme",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
