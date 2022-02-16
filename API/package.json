@@ -1,12 +1,12 @@
 {
-  "name": "ms-identity-react-c5s1",
+  "name": "msal-react-call-api-roles",
   "version": "1.0.0",
   "description": "A Node.js & Express web API accepting authorized calls with Azure Active Directory",
-  "author": "derisen",
+  "author": "Ivan Farkas",
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Azure-Samples/ms-identity-javascript-react-tutorial.git"
+    "url": "git+https://github.com/IvanFarkas/msal-react-call-api-roles.git"
   },
   "keywords": [
     "azure-ad",
@@ -15,9 +15,9 @@
     "api"
   ],
   "bugs": {
-    "url": "https://github.com/Azure-Samples/ms-identity-javascript-react-tutorial/issues"
+    "url": "https://github.com/IvanFarkas/msal-react-call-api-roles/issues"
   },
-  "homepage": "https://github.com/Azure-Samples/ms-identity-javascript-react-tutorial#readme",
+  "homepage": "https://github.com/IvanFarkas/msal-react#readme",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js",

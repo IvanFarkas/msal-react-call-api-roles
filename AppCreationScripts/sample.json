@@ -4,7 +4,7 @@
     "Level": 300,
     "Client": "React SPA",
     "Service": "Node.js web API",
-    "RepositoryUrl": "ms-identity-javascript-react-tutorial",
+    "RepositoryUrl": "msal-react-call-api-roles",
     "Endpoint": "AAD v2.0"
   },
   "AADApps": [

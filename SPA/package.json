@@ -1,7 +1,22 @@
 {
-  "name": "ms-identity-react-c5s1",
+  "name": "msal-react-call-api-roles",
   "version": "0.1.0",
   "description": "A React single-page application using MSAL React to call a protected web API on Azure Active Directory",
+  "author": "Ivan Farkas",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanFarkas/msal-react-call-api-roles.git"
+  },
+  "keywords": [
+    "azure-ad",
+    "ms-identity",
+    "node",
+    "api"
+  ],
+  "bugs": {
+    "url": "https://github.com/IvanFarkas/msal-react-call-api-roles/issues"
+  },
+  "homepage": "https://github.com/IvanFarkas/msal-react#readme",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
