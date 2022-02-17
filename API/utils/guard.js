@@ -29,7 +29,6 @@ const routeGuard = (accessMatrix) => {
         return res.status(403).json({ error: 'Unrecognized path' });
       }
     }
-
     next();
   };
 };

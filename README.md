@@ -171,12 +171,12 @@ To add users to this app role, follow the guidelines here: [Assign users and gro
 #### Add local API/.env file
 
 ```
+# The Application (client) ID of the application you registered.
+API_APP_ID="[App Id from above]"
+
 # If your application supports accounts in any organizational directory and personal Microsoft accounts: common
 # https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview
 TENANT_ID="[AAD Tenant Id]"
-
-# The Application (client) ID of the application you registered.
-API_APP_ID="[App Id from above]"
 ```
 
 #### Configure the service app (msal-node-api-roles) to use your app registration
@@ -303,14 +303,11 @@ The client application React SPA has a [RouteGuard](./SPA/src/components/RouteGu
 export const RouteGuard = ({ Component, ...props }) => {
   const { instance } = useMsal();
   const [isAuthorized, setIsAuthorized] = useState(false);
-
   const onLoad = async () => {
     const currentAccount = instance.getActiveAccount();
 
-    if (currentAccount && currentAccount.idTokenClaims["roles"]) {
-      let intersection = props.roles.filter((role) =>
-        currentAccount.idTokenClaims["roles"].includes(role)
-      );
+    if (currentAccount && currentAccount.idTokenClaims['roles']) {
+      let intersection = props.roles.filter((role) => currentAccount.idTokenClaims['roles'].includes(role));
 
       if (intersection.length > 0) {
         setIsAuthorized(true);
@@ -325,10 +322,7 @@ export const RouteGuard = ({ Component, ...props }) => {
   return (
     <>
       {isAuthorized ? (
-        <Route
-          {...props}
-          render={(routeProps) => <Component {...routeProps} />}
-        />
+        <Route {...props} render={(routeProps) => <Component {...routeProps} />} />
       ) : (
         <div className="data-area-div">
           <h3>You are unauthorized to view this content.</h3>
@@ -345,18 +339,8 @@ We then enable **RouteGuard** in [App.jsx](./SPA/src/App.jsx) as follows:
 const Pages = () => {
   return (
     <Switch>
-      <RouteGuard
-        exact
-        path="/todolist"
-        roles={[appRoles.TaskUser, appRoles.TaskAdmin]}
-        Component={TodoList}
-      />
-      <RouteGuard
-        exact
-        path="/dashboard"
-        roles={[appRoles.TaskAdmin]}
-        Component={Dashboard}
-      />
+      <RouteGuard exact path="/todolist" roles={[appRoles.TaskUser, appRoles.TaskAdmin]} Component={TodoList} />
+      <RouteGuard exact path="/dashboard" roles={[appRoles.TaskAdmin]} Component={Dashboard} />
     </Switch>
   );
 };
@@ -372,43 +356,34 @@ As mentioned before, in order to **truly** implement **RBAC** and secure data, w
 const routeGuard = (accessMatrix) => {
   return (req, res, next) => {
     if (req.authInfo.roles === undefined) {
-      return res.status(403).json({ error: "No roles claim found!" });
+      return res.status(403).json({ error: 'No roles claim found!' });
     } else {
-      const roles = req.authInfo["roles"];
+      const roles = req.authInfo['roles'];
 
       if (req.path.includes(accessMatrix.todolist.path)) {
         if (accessMatrix.todolist.methods.includes(req.method)) {
-          let intersection = accessMatrix.todolist.roles.filter((role) =>
-            roles.includes(role)
-          );
+          let intersection = accessMatrix.todolist.roles.filter((role) => roles.includes(role));
 
           if (intersection.length < 1) {
-            return res
-              .status(403)
-              .json({ error: "User does not have the role" });
+            return res.status(403).json({ error: 'User does not have the role' });
           }
         } else {
-          return res.status(403).json({ error: "Method not allowed" });
+          return res.status(403).json({ error: 'Method not allowed' });
         }
       } else if (req.path.includes(accessMatrix.dashboard.path)) {
         if (accessMatrix.dashboard.methods.includes(req.method)) {
-          let intersection = accessMatrix.dashboard.roles.filter((role) =>
-            roles.includes(role)
-          );
+          let intersection = accessMatrix.dashboard.roles.filter((role) => roles.includes(role));
 
           if (intersection.length < 1) {
-            return res
-              .status(403)
-              .json({ error: "User does not have the role" });
+            return res.status(403).json({ error: 'User does not have the role' });
           }
         } else {
-          return res.status(403).json({ error: "Method not allowed" });
+          return res.status(403).json({ error: 'Method not allowed' });
         }
       } else {
-        return res.status(403).json({ error: "Unrecognized path" });
+        return res.status(403).json({ error: 'Unrecognized path' });
       }
     }
-
     next();
   };
 };
@@ -438,29 +413,21 @@ const bearerStrategy = new BearerStrategy(options, (token, done) => {
   // Send user info using the second argument
   done(null, {}, token);
 });
-
 const app = express();
 
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors());
-
 app.use(passport.initialize());
-
 passport.use(bearerStrategy);
 
 // Validates token, checks for role and serve
-app.use(
-  "/api",
-  passport.authenticate("oauth-bearer", { session: false }),
-  routeGuard(config.accessMatrix),
-  router
-);
+app.use('/api', passport.authenticate('oauth-bearer', { session: false }), routeGuard(config.accessMatrix), router);
 
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
-  console.log("Listening on port " + port);
+  console.log('Listening on port ' + port);
 });
 ```
 

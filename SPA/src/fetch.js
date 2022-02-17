@@ -13,6 +13,9 @@ const getToken = async () => {
     ...protectedResources.apiTodoList.scopes,
   });
 
+  // View JWT issued by AAD: https://jwt.ms
+  console.log('accessToken:', response.accessToken);
+
   return response.accessToken;
 };
 
