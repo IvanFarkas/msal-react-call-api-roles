@@ -37,7 +37,7 @@ export const getTasks = async () => {
       const data = response.json();
       return data;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 };
 
 export const getTask = async (id) => {
@@ -57,7 +57,7 @@ export const getTask = async (id) => {
       const data = response.json();
       return data;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 };
 
 export const postTask = async (task) => {
@@ -79,7 +79,7 @@ export const postTask = async (task) => {
       const data = response.json();
       return data;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 };
 
 export const deleteTask = async (id) => {
@@ -99,7 +99,7 @@ export const deleteTask = async (id) => {
       const data = response.json();
       return data;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 };
 
 export const editTask = async (id, task) => {
@@ -121,7 +121,7 @@ export const editTask = async (id, task) => {
       const data = response.json();
       return data;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 };
 
 // Dashboard
@@ -142,5 +142,5 @@ export const getAllTasks = async () => {
       const data = response.json();
       return data;
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 };
